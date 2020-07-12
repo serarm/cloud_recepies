@@ -1,6 +1,6 @@
 # Deploy to Kubernetes in Google Cloud
 
-This file contains notes from [Deploy to Kubernetes in Google Cloud](https://www.qwiklabs.com/quests/116).
+This directory contains notes from [Deploy to Kubernetes in Google Cloud](https://www.qwiklabs.com/quests/116).
 
 It contains of 5 labs in 1 challenge. Following are notes for 5 challenges:
 1. [Introduction to Docker](1_Intro_to_docker.md)

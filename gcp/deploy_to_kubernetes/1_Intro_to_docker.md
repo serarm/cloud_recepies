@@ -1,25 +1,25 @@
 # Step 1: Introduction to Docker
 
-### Checking docker installation
+## Checking docker installation
  ```bash
  docker run hello-world
  ```
 
- ###  Building docker image with tag
+ ##  Building docker image with tag
  ```bash
  docker build -t node-app:0.1 .
  ```
 
- ### Running the docker image in background `-d` flag
+ ## Running the docker image in background `-d` flag
 ```bash
  docker run -p 4000:80 --name my-app -d node-app:0.1
 ```
- ### Debuging
+ ## Debuging
  + Checking logs
  ```bash
  docker logs -f [container_id]
  ```
- + logging in to container
+ + Logging in to container
  ```bash
  docker exec -it [container_id] bash
  ```
@@ -29,7 +29,7 @@
  docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container_id]
  ```
 
- ### Publishing the container
+ ## Publishing the container
 + Get the project id
 ```bash
  gcloud config list project
@@ -38,7 +38,7 @@
 ```bash
 docker tag node-app:0.2 gcr.io/[project-id]/node-app:0.2
 ```
- ### Cleanup
+ ## Cleanup
 
  + Stop and remove all containers
 
