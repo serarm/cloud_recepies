@@ -21,12 +21,24 @@
 |griffin-prod-vpc|griffin-prod-wp|us-east1|192.168.48.0/20|
 |griffin-prod-vpc|griffin-prod-mgmt|us-east1|192.168.64.0/20|
 
+```bash
+gcloud compute networks create griffin-prod-vpc --project=qwiklabs-gcp-00-a24ba41ff025 --description=Production\ VPC --subnet-mode=custom --mtu=1460 --bgp-routing-mode=regional
+
+gcloud compute networks subnets create griffin-prod-wp --project=qwiklabs-gcp-00-a24ba41ff025 --range=192.168.48.0/20 --network=griffin-prod-vpc --region=us-east1
+
+gcloud compute networks subnets create griffin-prod-mgmt --project=qwiklabs-gcp-00-a24ba41ff025 --range=192.168.64.0/20 --network=griffin-prod-vpc --region=us-east1
+```
 ## Task 3: Create bastion host
 + Create instance `griffin-bastion-host`
 + Region  us-east1
 + Zone us-east1-b
 + Type n1-standard-1
 + Add to subnet `griffin-prod-mgmt` and `griffin-dev-mgmt`
++ Create firewall rule to ensure ssh to instance
+```bash
+gcloud compute --project=qwiklabs-gcp-00-a24ba41ff025 firewall-rules create griffin-dev-vpc-firewall --direction=INGRESS --priority=1000 --network=griffin-dev-vpc --action=ALLOW --rules=tcp:22 --source-ranges=0.0.0.0/0
+gcloud compute --project=qwiklabs-gcp-00-a24ba41ff025 firewall-rules create griffin-prod-vpc-firewall --direction=INGRESS --priority=1000 --network=griffin-prod-vpc --action=ALLOW --rules=tcp:22 --source-ranges=0.0.0.0/0
+```
 
 ## Task 4: Create and configure Cloud SQL Instance
 + Create a MySQL Cloud SQL Instance called griffin-dev-db in us-east1
@@ -70,6 +82,7 @@ kubectl create secret generic cloudsql-instance-credentials \
 
 + Create the deployment using wp-deployment.yaml. 
 + Replace YOUR_SQL_INSTANCE with griffin-dev-db's Instance connection name from Cloud SQL instance
+`qwiklabs-gcp-00-a24ba41ff025:us-east1:griffin-dev-db`
 + Check the site installation page is up
 
 ## Task 8: Enable monitoring
