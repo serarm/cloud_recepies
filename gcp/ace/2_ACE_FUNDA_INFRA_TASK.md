@@ -44,6 +44,8 @@ gcloud functions deploy thumbnail \
 gcloud functions describe thumbnail
 ```
 + Check with the image at [link](https://storage.googleapis.com/cloud-training/gsp315/map.jpg) and upload it in the bucket
+
+![Sample](img/2_sample_image.jpg "Sample")
 **Ensure that the extension is jpg not jpeg **
 
 <details>
