@@ -45,6 +45,7 @@ gcloud compute --project=qwiklabs-gcp-00-a24ba41ff025 firewall-rules create grif
 + Configure for wordpress site
 
 ```sql
+gcloud sql connect griffin-dev-db --user=root
 CREATE DATABASE wordpress;
 GRANT ALL PRIVILEGES ON wordpress.* TO "wp_user"@"%" IDENTIFIED BY "stormwind_rules";
 FLUSH PRIVILEGES;
@@ -58,10 +59,11 @@ gcloud container clusters create griffin-dev \
   --num-nodes=2 --zone=us-east1-b \
   --machine-type=n1-standard-4  \
   --network=griffin-dev-vpc --subnetwork=griffin-dev-wp
+  gcloud container clusters get-credentials griffin-dev
 ```
 
 ## Task 6: Prepare the Kubernetes cluster
-
++ Updated yaml file can be found at [`wp_k8s`](wp_k8s)
 ```bash
 mkdir wordpress
 cd wordpress
@@ -73,6 +75,7 @@ gsutil cp gs://cloud-training/gsp321/wp-k8s .
 + Make sure you configure the username to wp_user and password to stormwind_rules before creating the configuration.
 + Use the command below to create the key, and then add the key to the Kubernetes environment.
 ```bash
+kubectl create -f wp-env.yaml
 gcloud iam service-accounts keys create key.json \
     --iam-account=cloud-sql-proxy@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
 kubectl create secret generic cloudsql-instance-credentials \
@@ -84,9 +87,15 @@ kubectl create secret generic cloudsql-instance-credentials \
 + Replace YOUR_SQL_INSTANCE with griffin-dev-db's Instance connection name from Cloud SQL instance
 `qwiklabs-gcp-00-a24ba41ff025:us-east1:griffin-dev-db`
 + Check the site installation page is up
-
+```bash
+kubectl create -f wp-deployment.yaml
+kubectl list deployment -w
+kubectl create -f wp-service.yaml
+kubectl list service -w
+```
 ## Task 8: Enable monitoring
 + Create an uptime check for your WordPress development site
+>Navigation menu >Monitoring>Uptime Check
 
 ## Task 9: Provide access for an additional engineer
 
