@@ -10,6 +10,5 @@ This folder contains notes and commands to different gcp quest and GCP coursera 
 + [**Set Up and Configure a Cloud Environment in Google Cloud**](https://google.qwiklabs.com/quests/119)
 + [**Automating Infrastructure on Google Cloud with Terraform**](https://google.qwiklabs.com/quests/159)
 
-3. [Optimize Costs for Google Kubernetes Engine](opt_cost_gke): Qwiklab skill :[***Optimize Costs for Google Kubernetes Engine
-*](https://google.qwiklabs.com/quests/157)
+3. [Optimize Costs for Google Kubernetes Engine](opt_cost_gke): Qwiklab skill :[**Optimize Costs for Google Kubernetes Engine**](https://google.qwiklabs.com/quests/157)
 
