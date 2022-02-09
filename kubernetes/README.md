@@ -1,3 +1,5 @@
+# CKAD
+
 ```
 kubectl cluster info
 kubectl get nodes
@@ -11,7 +13,6 @@ kubectl describe pods nginx
 kubectl get pods -o wide
 ```
 
-## CKAD
 > vi settings
 ```bash
 : set tabstop=4 shiftwidth=4 expandtab
