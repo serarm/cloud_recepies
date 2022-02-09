@@ -1,0 +1,1 @@
+This folder contains notes and excerices  from `Microsoft Azure Data Scientist Associate - DP-100 Test Prep`  on coursera.
